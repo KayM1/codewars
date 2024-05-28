@@ -52,7 +52,7 @@ def banner():
     if sprite_files:
         sprite_path = os.path.join(sprite_dir, random.choice(sprite_files))
         sprite = Image.open(sprite_path).convert('RGBA')
-        sprite = sprite.resize((100, 100))
+        sprite = sprite.resize((64, 64))
 
         # Paste the sprite onto the banner image (top-left corner)
         img.paste(sprite, (715, 20), sprite if sprite.mode == 'RGBA' else None)
