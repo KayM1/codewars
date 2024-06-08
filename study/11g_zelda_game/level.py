@@ -2,6 +2,7 @@ import pygame
 from settings import *
 from tile import Tile
 from player import Player
+# from debug import debug
 
 class Level:
     def __init__(self):
@@ -26,11 +27,13 @@ class Level:
                     Tile((x,y), [self.visible_sprites, self.obstacle_sprites])
 
                 if col == 'p':
-                    Player((x, y), [self.visible_sprites])
+                    self.player = Player((x, y), [self.visible_sprites], self.obstacle_sprites) # we pass along the info of obstacles to the player, even if they are not in that group 
 
     def run(self):
         # update and draw the game
         self.visible_sprites.draw(self.display_surface)
+        self.visible_sprites.update()
+        # debug(self.player.direction) see what direction the player is going
 
 
 
