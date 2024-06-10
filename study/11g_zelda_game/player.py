@@ -54,48 +54,49 @@ class Player(pygame.sprite.Sprite):
     def input(self):
         keys = pygame.key.get_pressed()
 
-        # movement input
-        #sprint
+        if not self.attacking:
+            # movement input
+            #sprint
 
-        if keys[pygame.K_z]:
-            self.speed = self.high_speed
-            self.sprint = True
-        else:
-            self.speed =  self.slow_speed
-            self.sprint = False
+            if keys[pygame.K_z]:
+                self.speed = self.high_speed
+                self.sprint = True
+            else:
+                self.speed =  self.slow_speed
+                self.sprint = False
 
-        if keys[pygame.K_UP]:
-            self.direction.y = -1
-            self.status = 'up'
-        elif keys[pygame.K_DOWN]:
-            self.direction.y = 1
-            self.status = 'down'
-        else:
-            self.direction.y = 0 # also applies when we stop holding a button
+            if keys[pygame.K_UP]:
+                self.direction.y = -1
+                self.status = 'up'
+            elif keys[pygame.K_DOWN]:
+                self.direction.y = 1
+                self.status = 'down'
+            else:
+                self.direction.y = 0 # also applies when we stop holding a button
 
-        if keys[pygame.K_RIGHT]:
-            self.direction.x = 1
-            self.status = 'right'
-        elif keys[pygame.K_LEFT]:
-            self.direction.x = -1
-            self.status = 'left'
-        else:
-            self.direction.x = 0 # also applies when we stop holding a button
-        
-        if self.direction.x == 0 and self.direction.y == 0:
-            self.speed = self.min_speed
+            if keys[pygame.K_RIGHT]:
+                self.direction.x = 1
+                self.status = 'right'
+            elif keys[pygame.K_LEFT]:
+                self.direction.x = -1
+                self.status = 'left'
+            else:
+                self.direction.x = 0 # also applies when we stop holding a button
+            
+            if self.direction.x == 0 and self.direction.y == 0:
+                self.speed = self.min_speed
 
-        # attack input
-        if keys[pygame.K_e] and not self.attacking:
-            self.attacking = True
-            self.attack_time = pygame.time.get_ticks()
-            print('attack')
+            # attack input
+            if keys[pygame.K_e] and not self.attacking:
+                self.attacking = True
+                self.attack_time = pygame.time.get_ticks()
+                print('attack')
 
-        # magic
-        if keys[pygame.K_a] and not self.attacking:
-            self.attacking = True
-            self.attack_time = pygame.time.get_ticks()
-            print('magic')
+            # magic
+            if keys[pygame.K_a] and not self.attacking:
+                self.attacking = True
+                self.attack_time = pygame.time.get_ticks()
+                print('magic')
 
 
     def get_status(self):
@@ -108,6 +109,7 @@ class Player(pygame.sprite.Sprite):
         if self.attacking:
             self.direction.x = 0
             self.direction.y = 0
+
             if not 'attack' in self.status:
                 if 'idle' in self.status:
                     # override idle
@@ -125,6 +127,8 @@ class Player(pygame.sprite.Sprite):
         if not '_idle' in self.status:
             self.start_speed = self.start_speed + self.start_speed * 0.03
         else:
+            self.start_speed = 5
+        if 'attack' in self.status:
             self.start_speed = 5
         if self.sprint == False:
             self.speed = min(self.start_speed, speed+5)
