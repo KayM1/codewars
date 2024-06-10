@@ -1,5 +1,6 @@
 import pygame
 from settings import *
+from support import import_folder
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, obstacle_sprites):
@@ -18,8 +19,23 @@ class Player(pygame.sprite.Sprite):
         self.attack_cooldown = 400
         self.attack_time = None
 
+        #import graphics
+        self.import_player_assets()
+
+        # apply graphics based on player status
+        self.status = 'down'
+        self.frame_index = 0
+        self.animation_speed = 0.15
+
         # interact with obstacles
         self.obstacle_sprites = obstacle_sprites
+
+        #sprinting
+        self.start_speed = 6
+        self.slow_speed = 6
+        self.high_speed = 12
+        self.sprint = False
+
 
     # import player graphics
     def import_player_assets(self):
@@ -29,21 +45,40 @@ class Player(pygame.sprite.Sprite):
                            'right_attack': [], 'left_attack':[], 'down_attack': [], 'up_attack':[]
                            }
 
+        for animation in self.animations:
+            full_path = character_path + animation
+            self.animations[animation] = import_folder(full_path)
+        
+        print(self.animations)
+
     def input(self):
         keys = pygame.key.get_pressed()
 
         # movement input
+        #sprint
+
+        if keys[pygame.K_z]:
+            self.speed = self.high_speed
+            self.sprint = True
+        else:
+            self.speed =  self.slow_speed
+            self.sprint = False
+
         if keys[pygame.K_UP]:
             self.direction.y = -1
+            self.status = 'up'
         elif keys[pygame.K_DOWN]:
             self.direction.y = 1
+            self.status = 'down'
         else:
             self.direction.y = 0 # also applies when we stop holding a button
 
         if keys[pygame.K_RIGHT]:
             self.direction.x = 1
+            self.status = 'right'
         elif keys[pygame.K_LEFT]:
             self.direction.x = -1
+            self.status = 'left'
         else:
             self.direction.x = 0 # also applies when we stop holding a button
         
@@ -63,11 +98,42 @@ class Player(pygame.sprite.Sprite):
             print('magic')
 
 
+    def get_status(self):
+
+        #idle status
+        if self.direction.x == 0 and self.direction.y == 0:
+            if not 'idle' in self.status and not 'attack' in self.status:
+                self.status = self.status + '_idle'
+        
+        if self.attacking:
+            self.direction.x = 0
+            self.direction.y = 0
+            if not 'attack' in self.status:
+                if 'idle' in self.status:
+                    # override idle
+                    self.status = self.status.replace('_idle', '_attack')
+                else:    
+                    self.status = self.status + '_attack'
+        else:
+            if 'attack' in self.status:
+                self.status = self.status.replace('_attack', '')
+
     def move(self, speed):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize() # prevent we are moving too fast diagonally
         
-        self.speed = min(self.speed + speed * 0.01, 20)
+        if not '_idle' in self.status:
+            self.start_speed = self.start_speed + self.start_speed * 0.03
+        else:
+            self.start_speed = 5
+        if self.sprint == False:
+            self.speed = min(self.start_speed, speed+5)
+            if self.start_speed >= self.slow_speed:
+                self.start_speed = self.slow_speed
+        else:
+            self.speed = min(self.start_speed, speed+self.high_speed)
+            if self.start_speed >= self.high_speed:
+                self.start_speed = self.high_speed
 
         self.hitbox.x += self.direction.x * self.speed
         self.collision('horizontal')
@@ -101,7 +167,22 @@ class Player(pygame.sprite.Sprite):
             if current_time - self.attack_time >= self.attack_cooldown:
                 self.attacking = False
 
+    def animate(self):
+        animation = self.animations[self.status]
+
+        # loop over the frame index
+        self.frame_index += self.animation_speed
+        if self.frame_index >= len(animation):
+            self.frame_index = 0
+        
+        # set the image
+        self.image = animation[int(self.frame_index)]
+        self.image = pygame.transform.scale(self.image, (64, 64))
+        self.rect = self.image.get_rect(center = self.hitbox.center)
+
     def update(self):
         self.input()
         self.cooldowns()
+        self.get_status()
+        self.animate()
         self.move(self.speed)

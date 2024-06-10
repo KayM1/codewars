@@ -4,8 +4,7 @@ from tile import Tile
 from player import Player
 from support import import_csv_layout, import_folder
 from random import choice
-
-# from debug import debug
+from debug import debug
 
 class Level:
     def __init__(self):
@@ -71,6 +70,8 @@ class Level:
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
         # debug(self.player.direction) see what direction the player is going
+        info = 'speed: ' + str(self.player.speed)
+        debug(info)
 
 
 
