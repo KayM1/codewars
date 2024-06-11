@@ -4,6 +4,7 @@ from tile import Tile
 from player import Player
 from support import import_csv_layout, import_folder
 from random import choice
+from weapon import Weapon
 from debug import debug
 
 class Level:
@@ -15,6 +16,9 @@ class Level:
         # sprite group setup
         self.visible_sprites = YSortCameraGroup()
         self.obstacle_sprites = pygame.sprite.Group()
+
+        # attack / weapon sprites
+        self.current_attack = None
 
         # sprite setup
         self.create_map()
@@ -63,7 +67,17 @@ class Level:
         #         if col == 'p':
         #             self.player = Player((x, y), [self.visible_sprites], self.obstacle_sprites) # we pass along the info of obstacles to the player, even if they are not in that group 
 
-        self.player = Player((3700, 2500), [self.visible_sprites], self.obstacle_sprites)
+        self.player = Player((3700, 2500), [self.visible_sprites], self.obstacle_sprites, self.create_attack, self.destroy_attack) # we are adding this function .create_attack into the player object, but not executing/calling it so no ()
+
+    # the weapon needs to be in the level so it can interact with the enemies, but attack is defined / used in player.py
+    # How do we solve this? =>
+    def create_attack(self):
+        self.current_attack = Weapon(self.player, [self.visible_sprites])
+
+    def destroy_attack(self):
+        if self.current_attack:
+            self.current_attack.kill()
+        self.current_attack = None
 
     def run(self):
         # update and draw the game
