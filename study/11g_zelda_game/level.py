@@ -5,6 +5,7 @@ from player import Player
 from support import import_csv_layout, import_folder
 from random import choice
 from weapon import Weapon
+from ui import UI
 from debug import debug
 
 class Level:
@@ -22,6 +23,9 @@ class Level:
 
         # sprite setup
         self.create_map()
+
+        # user interface
+        self.ui = UI()
 
     def create_map(self):
         layouts = {
@@ -84,8 +88,9 @@ class Level:
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
         # debug(self.player.direction) see what direction the player is going
-        info = 'speed: ' + str(self.player.speed)
-        debug(info)
+        # info = 'weapon: ' + str(self.player.weapon)
+        # debug(info)
+        self.ui.display(self.player)
 
 
 

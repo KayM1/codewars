@@ -12,7 +12,6 @@ class Player(pygame.sprite.Sprite):
 
         # define movement
         self.direction = pygame.math.Vector2()
-        self.speed = 5 # define speed (we might replace this with a dictionary of all player attributes later)
         self.min_speed = 5
         # attacking
         self.attacking = False
@@ -116,6 +115,13 @@ class Player(pygame.sprite.Sprite):
                 else:
                     self.weapon_index = 0
                 self.weapon = list(weapon_data.keys())[self.weapon_index]
+
+            # stats
+            self.stats = {'health': 100, 'energy': 60, 'attack': 10, 'magic': 4, 'speed': 5} # base stats
+            self.health = self.stats['health']
+            self.energy = self.stats['energy']
+            self.exp = 123
+            self.speed = self.stats['speed']
 
 
     def get_status(self):
