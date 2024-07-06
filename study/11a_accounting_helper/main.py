@@ -4,7 +4,6 @@ import random
 
 def sum_finder(n, goal, max_length=3):
     from itertools import combinations
-
     # Function to find all combinations of a given length that sum to the goal
     def find_combinations_of_length(n, goal, length):
         return [list(comb) for comb in combinations(n, length) if sum(comb) == goal]
