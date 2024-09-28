@@ -1,5 +1,6 @@
 import random
 from pathlib import Path
+import os
 
 class Program:
     def __init__(self, naam):
@@ -94,6 +95,13 @@ def lees_alle_cursusbestanden(map_pad):
             cursussen.append(cursus)
     return cursussen
 
+def clear_console():
+    # Check if the platform is Windows
+    if os.name == 'nt':
+        os.system('cls')  # Clear console for Windows
+    else:
+        os.system('clear')  # Clear console for Linux/MacOS
+
 # Main programma
 def main():
     # Programma en cursussen aanmaken
@@ -106,12 +114,20 @@ def main():
     gekozen_cursus = geef_cursus_keuze(program.cursussen)
     gekozen_leereenheden = geef_leereenheid_keuze(gekozen_cursus)
 
-    # Willekeurige vraag geven
-    vraag = kies_willekeurige_vraag(gekozen_leereenheden)
-    if vraag:
-        print(f"Willekeurige vraag: {vraag.tekst} (Leereenheid: {vraag.leereenheid.naam})")
-    else:
-        print("Geen vragen beschikbaar.")
+    while True:
+        # Willekeurige vraag geven
+        vraag = kies_willekeurige_vraag(gekozen_leereenheden)
+        if vraag:
+            print(f"Willekeurige vraag: {vraag.tekst} (Leereenheid: {vraag.leereenheid.naam})")
+        else:
+            print("Geen vragen beschikbaar.")
+
+        # Vraag de gebruiker of ze een nieuwe vraag willen:
+        opnieuw = input("Wil je een nieuwe vraag? (Y/N): ").strip().lower()
+        if opnieuw != 'y':
+            print("Exit.")
+            break
+        clear_console()
 
 if __name__ == "__main__":
     main()
