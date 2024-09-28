@@ -1,0 +1,51 @@
+Leereenheid: 2. Systemen en systeemontwikkeling
+Vraag: Informele omschrijvingen kunt geven van de begrippen systeem, informatiesysteem en informatie
+Vraag: kunt uitleggen waarom een informatiesysteem niet altijd deels of volledig geautomatiseerd hoeft te zijn en in verband daarmee het belang van het afbakenen van systeemgrenzen kunt aangeven
+Vraag: kunt omschrijven wat de specifieke kenmerken zijn van administratieve informatiesystemen, real-timesystemen, gedistribueerde systemen, embedded systemen en kritische systemen
+Vraag: een beschrijving kunt geven van systeemontwikkeling volgens de watervalmethode en het V-model, en het doel kunt aangeven van de analyse-, ontwerp- en implementatiefase
+Vraag: kunt aangeven wat de voordelen zijn van iteratieve ontwikkelmethodes boven de watervalmethode / V-model
+Vraag: de basisprincipes van Agile, Scrum en Kanban kunt benoemen en kunt aangeven wat de voor- en nadelen van deze methodes zijn
+Vraag: de voors en tegens van de verschillende ontwerpmethodes tegen elkaar kunt afwegen
+Vraag: kunt aangeven welke rol onderhoud speelt in de levensloop van een informatiesysteem
+Vraag: kunt omschrijven wat een model is en welke rol modellen spelen in systeemontwikkeling
+Vraag: kunt beoordelen of een gegeven model een passende abstractie is voor het analyseren van een situatie
+Vraag: de betekenis kunt geven van de volgende kernbegrippen: software engineering, methodes, technieken, voortraject, bedrijfsmodellering, informatieanalyse, specificatie, eisendocument, domein.
+
+Leereenheid: 3. OO Analyse
+Vraag: kunt aangeven welke vragen beantwoord moeten worden tijdens de inceptiefase van de ontwikkeling van een systeem
+Vraag: kunt aangeven welke problemen kunnen optreden bij het opstellen van eisen en hoe het gebruik van use cases deze probeert te ondervangen
+Vraag: onderscheid kunt maken tussen functionele en niet-functionele eisen
+Vraag: kunt aangeven welke ontwikkeling een use case doormaakt
+Vraag: voor eenvoudige gevallen use-casebeschrijvingen op kunt stellen, zowel informeel als gedetailleerd
+Vraag: van een doel kunt aangeven of het geschikt danwel te abstract (hoog niveau) of te specifiek (laag niveau) is voor een use case
+Vraag: twee functies kunt noemen van het opstellen van een domeinmodel
+Vraag: kunt aangeven wat onder objectgeoriënteerde modellering wordt verstaan en waarom deze wijze van modelleren nu algemeen wordt toegepast
+Vraag: kunt uitleggen wat een object is en wat een klasse is
+Vraag: in staat bent om een eenvoudig domeinmodel op te stellen in de vorm van een UML-klassendiagram
+Vraag: globaal de achtergrond en het belang van UML kunt uitleggen
+Vraag: de betekenis kunt geven van de volgende kernbegrippen: inceptiefase, visiedocument, primaire actor, hoofdsuccesscenario, uitbreiding (van een use case), scenario, klasse, instantie, attribuut, methode, link, associatie, objectdiagram en klassendiagram.
+
+Leereenheid: 4. OO ontwerp
+Vraag: in grote lijnen het objectgeoriënteerde ontwerpproces kunt schetsen en kunt aangeven welke rol de use-casebeschrijvingen en het domeinmodel uit de analysefase daarin spelen
+Vraag: kunt omschrijven wat een methode is
+Vraag: aan de hand van voorbeelden kunt toelichten hoe objecten via het versturen van berichten en het uitvoeren van methoden samenwerken om een bepaald gedrag te realiseren
+Vraag: eenvoudige sequentiediagrammen kunt lezen
+Vraag: op grond van een beschrijving in woorden van het berichtenverkeer tussen objecten, een sequentiediagram kunt tekenen (alleen eenvoudige gevallen) 
+Vraag: op grond van een of meer sequentiediagrammen kunt vaststellen welke methoden de betrokken klassen zullen krijgen
+Vraag: weet wat een ontwerpklassendiagram is en wat het verschil is met een domeinmodel
+Vraag: in eenvoudige gevallen een ontwerpklassendiagram kunt tekenen
+Vraag: drie voordelen van het objectgeoriënteerde paradigma kunt noemen
+Vraag: de betekenis kunt geven van de volgende kernbegrippen: bericht of methodeaanroep, parameter, terugkeerwaarde, inkapseling en overerving.
+
+Leereenheid: 5. Verzamelingen
+Vraag: het begrip verzameling kunt omschrijven
+Vraag: de volgende begrippen uit de verzamelingenleer kent en kunt toepassen en de bijbehorende notaties kunt hanteren: element en geen element van, gelijkheid van verzamelingen, de lege verzameling, (echte) deelverzameling
+Vraag: eenvoudige expliciete en impliciete definities van verzamelingen kunt begrijpen en zelf kunt geven
+Vraag: de machtsverzameling van een verzameling kunt bepalen
+Vraag: doorsneden, verenigingen en verschil van verzamelingen kunt bepalen
+Vraag: het complement van een verzameling ten opzichte van een universum kunt bepalen
+Vraag: kunt nagaan of verzamelingen disjunct zijn
+Vraag: het verschil tussen eindige en oneindige verzamelingen kent
+Vraag: de notaties kent voor de deelverzamelingen van de positieve en de negatieve elementen in de oneindige getalverzamelingen N, Z, Q en R
+Vraag: eenvoudige eigenschappen van verzamelingen kunt bewijzen
+Vraag: verzamelingen met behulp van Venndiagrammen kunt representeren.
