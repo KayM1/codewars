@@ -1,6 +1,4 @@
-# Ter info, ik heb reeds ervaring met het schrijven van oa. webcrawlers, grafische toepassingen (zoals maze solvers) of zelfs games in pygame met python
-# Daarom dat ik ook even geprobeerd heb aan wat input controle te doen in deze opdracht
-# Het was wel even wat heropfrissen... :-)
+# Versie 1.1 -- priemfactoren tonen als het geen priemgetal is
 
 import os
 import platform
@@ -13,6 +11,17 @@ def ispriem(x):
         if x % i == 0:
             return False
     return True
+
+def priemfactoren(n):
+    factoren = []
+    deler = 2
+    while n > 1:
+        if n % deler == 0:
+            factoren.append(deler)
+            n = n // deler
+        else:
+            deler += 1
+    return factoren
 
 def eersteNpriem(n):
     count = 0
@@ -45,10 +54,15 @@ def main():
         if keuze == "1":
             try:
                 x = int(input("\n 1. Voer een getal in om te controleren of het een priemgetal is: "))
-                if ispriem(x):
-                    print(f"\n{x} is WEL een priemgetal.")
+                if x > 0:
+                    if ispriem(x):
+                        print(f"\n{x} is **WEL** een priemgetal.")
+                    else:
+                        factoren = priemfactoren(x)
+                        print(f"\n{x} is **GEEN** priemgetal.")
+                        print(f"Het is een samengesteld getal met priemfactoren: {', '.join(map(str, factoren))}")
                 else:
-                    print(f"\n{x} is GEEN priemgetal.")
+                    print("Voer een positief geheel getal in.")
             except ValueError:
                 print("Ongeldige input. Voer enkel positieve gehele geetallen in.")
             slaapje('',1)

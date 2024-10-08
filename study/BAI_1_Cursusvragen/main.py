@@ -118,7 +118,7 @@ def main():
         # Willekeurige vraag geven
         vraag = kies_willekeurige_vraag(gekozen_leereenheden)
         if vraag:
-            print(f"Willekeurige vraag: {vraag.tekst} (Leereenheid: {vraag.leereenheid.naam})")
+            print(f"\n\n\n    Willekeurige vraag: \"{vraag.tekst.capitalize()}.\"         (Leereenheid: {vraag.leereenheid.naam}) \n\n\n")
         else:
             print("Geen vragen beschikbaar.")
 
